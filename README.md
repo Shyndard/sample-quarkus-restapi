@@ -28,7 +28,7 @@ docker build -t sample-quarkus-restapi .
 ```
 and then run it with
 ```
-docker run -i --rm -p 8080:8080 sample-quarkus-restapi
+docker run -i --rm -p 8080:8080 -e PORT=8080 sample-quarkus-restapi
 ```
 
 See https://quarkus.io/guides/building-native-image for more details.
