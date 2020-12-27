@@ -20,5 +20,7 @@ steps:
         from_secret: DOCKER_PASSWORD
       repo:
         from_secret: DOCKER_REPOSITORY
-      tags: latest
+      tags:
+        - latest
+        - 1.0.0
     depends_on: [test, build]
