@@ -1,0 +1,24 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: test
+    image: maven:3.6.3-jdk-11
+    commands:
+      - mvn clean test
+  - name: build
+    image: maven:3.6.3-jdk-11
+    commands:
+      - mvn clean package -DskipTests=true
+  - name: docker
+    image: plugins/docker
+    settings:
+      username:
+        from_secret: DOCKER_USERNAME
+      password:
+        from_secret: DOCKER_PASSWORD
+      repo:
+        from_secret: DOCKER_REPOSITORY
+      tags: latest
+    depends_on: [test, build]
